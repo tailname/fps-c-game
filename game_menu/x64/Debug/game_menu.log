@@ -1,5 +1,0 @@
-﻿  main.cpp
-C:\Users\Adyur\source\repos\game_menu\main.cpp(43,17): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
-C:\Users\Adyur\source\repos\game_menu\main.cpp(44,18): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
-C:\Users\Adyur\source\repos\game_menu\main.cpp(123,31): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  game_menu.vcxproj -> C:\Users\Adyur\source\repos\game_menu\x64\Debug\game_menu.exe
