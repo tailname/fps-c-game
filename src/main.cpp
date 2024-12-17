@@ -1,13 +1,8 @@
-#include <SFML/Graphics.hpp>
-#include "GameMenu.h"
-#include <vector>
-using namespace sf;
-// функция ностройки текста
 void InitText(Text& mtext, float xpos, float ypos, String str, int size_font = 60, Color menu_text_color = Color::White, int bord = 0, Color border_color = Color::Black);
 
 void game_start()
 {
-    RenderWindow Play(VideoMode::getDesktopMode(), L"Уровень 1", Style::Fullscreen);
+    RenderWindow Play(VideoMode::getDesktopMode(), L"Г“Г°Г®ГўГҐГ­Гј 1", Style::Fullscreen);
 
     RectangleShape background_play(Vector2f(1920, 1080));
 
@@ -32,18 +27,18 @@ void game_start()
 
 int main()
 {
-    // Создаём окно windows
+    // Г‘Г®Г§Г¤Г ВёГ¬ Г®ГЄГ­Г® windows
     RenderWindow window;
-    window.create(VideoMode::getDesktopMode(), L"Моя игра", Style::Fullscreen);
+    window.create(VideoMode::getDesktopMode(), L"ГЊГ®Гї ГЁГЈГ°Г ", Style::Fullscreen);
     
-    // Отключаем видимость курсора
+    // ГЋГІГЄГ«ГѕГ·Г ГҐГ¬ ГўГЁГ¤ГЁГ¬Г®Г±ГІГј ГЄГіГ°Г±Г®Г°Г 
     window.setMouseCursorVisible(false);
 
-    //Размер экрана
+    //ГђГ Г§Г¬ГҐГ° ГЅГЄГ°Г Г­Г 
     float width = VideoMode::getDesktopMode().width;
     float height = VideoMode::getDesktopMode().height;
 
-    // Устанавливаем фон экрана меню
+    // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГґГ®Г­ ГЅГЄГ°Г Г­Г  Г¬ГҐГ­Гѕ
     RectangleShape background(Vector2f(width, height));
 
     Texture texture_window;
@@ -53,7 +48,7 @@ int main()
     }
     background.setTexture(&texture_window);
 
-    // Шрифт для названия экрана
+    // ГГ°ГЁГґГІ Г¤Г«Гї Г­Г Г§ГўГ Г­ГЁГї ГЅГЄГ°Г Г­Г 
     Font font;
     if (!font.loadFromFile("Font/troika.otf"))
     {
@@ -61,15 +56,15 @@ int main()
     }
     Text Titul;
     Titul.setFont(font);
-    InitText(Titul, 480, 50, L"Апокалипсис", 150, Color(237, 147, 0), 3);
+    InitText(Titul, 480, 50, L"ГЂГЇГ®ГЄГ Г«ГЁГЇГ±ГЁГ±", 150, Color(237, 147, 0), 3);
 
-    // название пунктов меню
-    String name_menu[4]{ L"Играть",L"Продолжить", L"О игре", L"Выход" };
+    // Г­Г Г§ГўГ Г­ГЁГҐ ГЇГіГ­ГЄГІГ®Гў Г¬ГҐГ­Гѕ
+    String name_menu[4]{ L"Г€ГЈГ°Г ГІГј",L"ГЏГ°Г®Г¤Г®Г«Г¦ГЁГІГј", L"ГЋ ГЁГЈГ°ГҐ", L"Г‚Г»ГµГ®Г¤" };
     std::vector<String> name_vector(std::begin(name_menu), std::end(name_menu));
-    // объект меню
+    // Г®ГЎГєГҐГЄГІ Г¬ГҐГ­Гѕ
     game::GameMenu my_menu(window, 950, 350, name_vector, 100, 120);
 
-    // Установка цвета отображаемого меню
+    // Г“Г±ГІГ Г­Г®ГўГЄГ  Г¶ГўГҐГІГ  Г®ГІГ®ГЎГ°Г Г¦Г ГҐГ¬Г®ГЈГ® Г¬ГҐГ­Гѕ
     my_menu.set_color_text_menu(Color(237,147,0), Color::Red, Color::Black);
     my_menu.Allign_menu(2);
     while (window.isOpen())
@@ -84,7 +79,7 @@ int main()
                 if (event.key.code == Keyboard::Down || event.key.code == Keyboard::S) my_menu.move_down();
                 if (event.key.code == Keyboard::Enter)
                 {
-                    // переходим на выбранный пункт меню
+                    // ГЇГҐГ°ГҐГµГ®Г¤ГЁГ¬ Г­Г  ГўГ»ГЎГ°Г Г­Г­Г»Г© ГЇГіГ­ГЄГІ Г¬ГҐГ­Гѕ
                     switch (my_menu.get_select_menu_number())
                     {
                     case 0:
@@ -122,4 +117,5 @@ void InitText(Text& mtext, float xpos, float ypos, String str, int size_font, Co
     mtext.setFillColor(menu_text_color);
     mtext.setOutlineThickness(bord);
     mtext.setOutlineColor(border_color);
+
 }
