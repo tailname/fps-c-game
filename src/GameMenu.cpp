@@ -1,4 +1,4 @@
-#include "GameMenu.h"
+#include "../include/GameMenu.h"
 #include <vector>
 void game::GameMenu::SetInitText(Text& text, String str, float xpos, float ypos)
 {

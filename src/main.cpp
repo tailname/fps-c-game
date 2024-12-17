@@ -1,3 +1,6 @@
+#include"../include/GameMenu.h"
+#include "../include/Level.h"
+#include<box2d/box2d.h>
 void InitText(Text& mtext, float xpos, float ypos, String str, int size_font = 60, Color menu_text_color = Color::White, int bord = 0, Color border_color = Color::Black);
 
 void game_start()
@@ -27,6 +30,10 @@ void game_start()
 
 int main()
 {
+    b2Vec2 gravity(0.0f, 9.81f);
+    auto world = std::make_unique<b2World>(gravity);
+    Level level;
+	level.loadFromFile("..\\..\\..\\Image\\level1.xml", *world);
     // Ñîçäà¸ì îêíî windows
     RenderWindow window;
     window.create(VideoMode::getDesktopMode(), L"Ìîÿ èãðà", Style::Fullscreen);
