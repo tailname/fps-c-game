@@ -17,10 +17,26 @@ public:
         std::string type;
         sf::FloatRect bounds;
         sf::Sprite sprite;
+
         std::map<std::string, std::string> properties;
 
         template<typename T>
-        T getProperty(const std::string& name) const;
+        T getProperty(const std::string& name) const {
+            auto it = properties.find(name);
+            if (it == properties.end()) {
+                throw std::runtime_error("Property not found: " + name);
+            }
+
+            if constexpr (std::is_same_v<T, int>) {
+                return std::stoi(it->second);
+            }
+            else if constexpr (std::is_same_v<T, float>) {
+                return std::stof(it->second);
+            }
+            else if constexpr (std::is_same_v<T, std::string>) {
+                return it->second;
+            }
+        }
     };
 
 public:

@@ -167,24 +167,6 @@ void Level::render(sf::RenderWindow& window) {
     }
 }
 
-template<typename T>
-T Level::ObjectData::getProperty(const std::string& name) const {
-    auto it = properties.find(name);
-    if (it == properties.end()) {
-        throw std::runtime_error("Property not found: " + name);
-    }
-
-    if constexpr (std::is_same_v<T, int>) {
-        return std::stoi(it->second);
-    }
-    else if constexpr (std::is_same_v<T, float>) {
-        return std::stof(it->second);
-    }
-    else if constexpr (std::is_same_v<T, std::string>) {
-        return it->second;
-    }
-}
-
 const Level::ObjectData* Level::getObject(const std::string& name) const {
     auto it = std::find_if(objects_.begin(), objects_.end(),
         [&name](const ObjectData& obj) { return obj.name == name; });
