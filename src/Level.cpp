@@ -1,5 +1,5 @@
 #include "../include/Level.h"
-
+#include <iostream>
 
 using namespace tinyxml2;
 
@@ -8,6 +8,7 @@ Level::~Level() = default;
 
 bool Level::loadFromFile(const std::string& filename, b2World& world) {
     XMLDocument doc;
+    
     if (doc.LoadFile(filename.c_str()) != XML_SUCCESS) {
         std::cerr << "Failed to load level file: " << filename << std::endl;
         return false;

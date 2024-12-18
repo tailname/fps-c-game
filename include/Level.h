@@ -9,9 +9,6 @@
 #include "TileMap.h"
 #include "../xml_parser/src/tinyxml2.h"
 
-namespace tinyxml2 {
-    class XMLElement;
-}
 
 class Level {
 public:
@@ -36,6 +33,10 @@ public:
     const ObjectData* getObject(const std::string& name) const;
     std::vector<const ObjectData*> getObjects(const std::string& name) const;
     sf::Vector2i getTileSize() const { return tileSize_; }
+
+    void setScale(float scaleX, float scaleY);
+    void update(float deltaTime);
+    void cleanupMarkedObjects();
 
 private:
     void createPhysicsBody(const ObjectData& obj, b2World& world, b2BodyType bodyType);
