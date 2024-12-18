@@ -1,4 +1,4 @@
-#include "Entity.h"
+#include "../include/Entity.h"
 
 Entity::Entity(const std::unordered_map<std::string, path>& texturePaths) {
     for (const auto&[name, path] : texturePaths) {
