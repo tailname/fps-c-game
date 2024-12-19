@@ -13,18 +13,23 @@ Entity::Entity(const std::unordered_map<std::string, path>& texturePaths) {
     }
 }
 
+
 void Entity::setPosition(const sf::Vector2f& pos) {
-    mSprite.setPosition(pos);  // Óñòàíàâëèâàåì ïîçèöèþ ñïðàéòà
+    mSprite.setPosition(pos);
     if (mBody) {
-        mBody->SetTransform(b2Vec2(pos.x, pos.y), mBody->GetAngle());  // Óñòàíàâëèâàåì ïîçèöèþ òåëà Box2D (åñëè îíî ñóùåñòâóåò)
+        mBody->SetTransform(b2Vec2(pos.x, pos.y), mBody->GetAngle());
     }
 }
 
 void Entity::createBody(b2World& world, const b2BodyDef& bodyDef) {
     mBody = shared_ptr<b2Body>(world.CreateBody(&bodyDef), [&world](b2Body* body) {
-        world.DestroyBody(body);  // Óäàëÿåì òåëî ïðè ðàçðóøåíèè ñóùíîñòè
+        world.DestroyBody(body);
     });
 }
 shared_ptr<b2Body> Entity::getBody() {
     return mBody;
+}
+
+EntityType Entity::getType() const {
+    return entityType;
 }
