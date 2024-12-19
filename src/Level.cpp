@@ -135,7 +135,7 @@ void Level::loadObjects(const XMLElement* mapNode) {
                     ));
                     
                     // Set position and size
-                    obj.sprite.setPosition(x, y);
+                    obj.sprite.setPosition(x, y - h);
                     float scaleX = w / tileSize_.x;
                     float scaleY = h / tileSize_.y;
                     obj.sprite.setScale(scaleX, scaleY);
