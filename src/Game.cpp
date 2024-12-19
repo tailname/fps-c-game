@@ -1,6 +1,8 @@
 #include "../include/Game.h"
 #include <iostream>
 
+#include "Player.h"
+
 Game::Game() 
     : currentState_(GameState::Menu)
     , timeStep_(1.0f/60.0f)
@@ -15,6 +17,8 @@ Game::Game()
     b2Vec2 gravity(0.0f, 9.81f);
     world_ = std::make_unique<b2World>(gravity);
 
+    player_.createBody(*world_, *player_.getBodyDef());
+    world_->CreateBody(player_.getBodyDef().get());
     // Initialize game view
     gameView_.reset(sf::FloatRect(0, 0, window_.getSize().x, window_.getSize().y));
 
@@ -61,7 +65,7 @@ void Game::run() {
     
     while (window_.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
-        
+
         processEvents();
         update(deltaTime);
         render();
@@ -69,7 +73,7 @@ void Game::run() {
 }
 
 void Game::processEvents() {
-    sf::Event event;
+    sf::Event event{};
     while (window_.pollEvent(event)) {
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Escape) {
@@ -125,6 +129,7 @@ void Game::startLevel() {
 void Game::update(float deltaTime) {
     if (currentState_ == GameState::Playing) {
         world_->Step(timeStep_, velocityIterations_, positionIterations_);
+        player_.update(deltaTime);
         // Update game logic here
     }
 }
@@ -139,6 +144,7 @@ void Game::render() {
     }
     else if (currentState_ == GameState::Playing && level_) {
         level_->render(window_);
+        player_.render(window_); // Рендеринг игрока
     }
 
     window_.display();

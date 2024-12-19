@@ -14,15 +14,15 @@ Entity::Entity(const std::unordered_map<std::string, path>& texturePaths) {
 }
 
 void Entity::setPosition(const sf::Vector2f& pos) {
-    mSprite.setPosition(pos);  // Устанавливаем позицию спрайта
+    mSprite.setPosition(pos);  // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГЇГ®Г§ГЁГ¶ГЁГѕ Г±ГЇГ°Г Г©ГІГ 
     if (mBody) {
-        mBody->SetTransform(b2Vec2(pos.x, pos.y), mBody->GetAngle());  // Устанавливаем позицию тела Box2D (если оно существует)
+        mBody->SetTransform(b2Vec2(pos.x, pos.y), mBody->GetAngle());  // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГЇГ®Г§ГЁГ¶ГЁГѕ ГІГҐГ«Г  Box2D (ГҐГ±Г«ГЁ Г®Г­Г® Г±ГіГ№ГҐГ±ГІГўГіГҐГІ)
     }
 }
 
 void Entity::createBody(b2World& world, const b2BodyDef& bodyDef) {
     mBody = shared_ptr<b2Body>(world.CreateBody(&bodyDef), [&world](b2Body* body) {
-        world.DestroyBody(body);  // Удаляем тело при разрушении сущности
+        world.DestroyBody(body);  // Г“Г¤Г Г«ГїГҐГ¬ ГІГҐГ«Г® ГЇГ°ГЁ Г°Г Г§Г°ГіГёГҐГ­ГЁГЁ Г±ГіГ№Г­Г®Г±ГІГЁ
     });
 }
 shared_ptr<b2Body> Entity::getBody() {

@@ -4,6 +4,7 @@
 #include <memory>
 #include "Level.h"
 #include "GameMenu.h"
+#include "Player.h"
 
 class Game {
 public:
@@ -20,11 +21,11 @@ private:
     void handleMenuSelection();
     void startLevel();
 
-private:
     sf::RenderWindow window_;
     std::unique_ptr<b2World> world_;
     std::unique_ptr<Level> level_;
     std::unique_ptr<game::GameMenu> menu_;
+    Player player_;
     
     // Game states
     enum class GameState {
