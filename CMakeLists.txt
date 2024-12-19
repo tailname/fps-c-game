@@ -32,7 +32,6 @@ add_executable(fps-cpp-game
         src/Level.cpp
         src/TileMap.cpp
         xml_parser/src/tinyxml2.cpp
-        src/Entity.cpp
         include/Level.h
         src/Entity.cpp
         include/Player.h
