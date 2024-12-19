@@ -22,6 +22,8 @@ public:
     void addLayer(const std::vector<int>& tileIndices, int opacity = 255);
     void render(sf::RenderWindow& window);
 
+    const sf::Texture* getTileset() const { return &tileset_; }
+
 private:
     sf::Texture tileset_;
     std::vector<Layer> layers_;

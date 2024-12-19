@@ -6,7 +6,6 @@
 #include <filesystem>
 #include <memory>
 #include <unordered_map>
-#include <bits/fs_path.h>
 
 using std::shared_ptr;
 using path = std::filesystem::path;
@@ -29,5 +28,5 @@ public:
 protected:
     sf::Sprite mSprite;
     shared_ptr<b2Body> mBody;
-    std::unordered_map<std::string, sf::Texture> m_textures; // map текстур
+    std::unordered_map<std::string, sf::Texture> m_textures; // map ГІГҐГЄГ±ГІГіГ°
 };

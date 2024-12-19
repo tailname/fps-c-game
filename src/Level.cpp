@@ -112,6 +112,36 @@ void Level::loadObjects(const XMLElement* mapNode) {
 
             obj.bounds = sf::FloatRect(x, y, w, h);
 
+            // Load sprite if there's a gid (tile reference)
+            if (int gid = objElem->IntAttribute("gid", 0)) {
+                // Get the tileset texture from TileMap
+                const sf::Texture* tilesetTexture = tileMap_->getTileset();
+                if (tilesetTexture) {
+                    obj.sprite.setTexture(*tilesetTexture);
+                    
+                    // Calculate texture coordinates based on gid
+                    int tilesetWidth = tilesetTexture->getSize().x / tileSize_.x;
+                    int tileId = gid - 1; // GIDs are 1-based
+                    
+                    int tu = tileId % tilesetWidth;
+                    int tv = tileId / tilesetWidth;
+                    
+                    // Set the texture rectangle for the sprite
+                    obj.sprite.setTextureRect(sf::IntRect(
+                        tu * tileSize_.x,
+                        tv * tileSize_.y,
+                        tileSize_.x,
+                        tileSize_.y
+                    ));
+                    
+                    // Set position and size
+                    obj.sprite.setPosition(x, y - h);
+                    float scaleX = w / tileSize_.x;
+                    float scaleY = h / tileSize_.y;
+                    obj.sprite.setScale(scaleX, scaleY);
+                }
+            }
+
             // Load properties
             if (auto* propsElem = objElem->FirstChildElement("properties")) {
                 for (auto* propElem = propsElem->FirstChildElement("property");
